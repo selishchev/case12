@@ -15,11 +15,16 @@ def findFiles(target, path):
     if len(my_files) == 0:
         print('Файла не существует! проверьте вводимые данные!')
     else:
-        print(my_files)
+        print()
+        print("Файлы каталога [" + path + "], которые содержат подстроку '" + target + "':")
+        for f in my_files:
+            print("  ---> " + f)
+        print("******************* КОНЕЦ ПОИСКА ФАЙЛОВ **********************************")
 
 def main_findFiles():
-    target = input('Введите элемент названия:')
-    path = input('Введите имя каталога:')
+    print ("******************* ПОИСК ФАЙЛОВ **********************************")
+    target = input('Введите часть названия файла:')
+    path = input('Введите имя каталога, с которого начинать поиск:')
     findFiles(target, path)
 
 def acceptCommand():
@@ -35,8 +40,11 @@ def acceptCommand():
 
 def runCommand(x):
     if x == 1:
-        dir = os.path.abspath(os.curdir)
-        print(dir)
+        files = os.listdir(os.getcwd())
+        print()
+        print("Содержимое каталога " + os.getcwd() + ":")
+        for f in files:
+            print("  ---> " + f)
     #elif x == 2:
         #moveUp()
     #elif x == 3:
@@ -63,3 +71,4 @@ def main():
 
 
 main()
+
