@@ -1,6 +1,26 @@
 import os
 import os.path
 
+
+def countFiles(path=os.getcwd()):
+    sum = 0
+    for i, j, k in os.walk(path):
+        sum += len(k)
+    return sum
+
+
+def countBytes(path=os.getcwd()):
+    bytes = 0
+    for i, j, k in os.walk(path):
+        for p in k:
+            if os.path.isfile(i + '/' + p):
+                bytes += os.path.getsize(i + '/' + p)
+    return bytes
+
+
+print(countFiles())
+print(countBytes())
+
 def moveUp():
     a = os.getcwd()
     b = os.path.split(a)
@@ -72,14 +92,14 @@ def runCommand(x):
         print("Содержимое каталога " + os.getcwd() + ":")
         for f in files:
             print("  ---> " + f)
-    #elif x == 2:
-        #moveUp()
-    #elif x == 3:
-        #moveDown()
-   # elif x == 4:
-        #countFiles()
-    #elif x == 5:
-        #countBytes()
+    elif x == 2:
+        moveUp()
+    elif x == 3:
+        moveDown()
+    elif x == 4:
+        countFiles()
+    elif x == 5:
+        countBytes()
     elif x == 6:
         main_findFiles()
     elif x == 7:
